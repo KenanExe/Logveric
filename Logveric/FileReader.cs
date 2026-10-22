@@ -33,6 +33,10 @@ namespace Logveric
             {
                 if (fileSize > 0)
                 {
+                    Form1.MainGrid.Rows.Clear();
+                    Form1.MainGrid.Columns.Clear();
+                    string nowColumns = null;
+                    int colIndex = 0;
                     StreamReader sr = new StreamReader(filePath);
                     while (true)
                     {
@@ -43,11 +47,29 @@ namespace Logveric
                         }
                         if (!string.IsNullOrEmpty(line))
                         {
-                            Form1.MainGrid.Rows.Add(line);
+                            if (line.StartsWith("["))
+                            {
+                                if (line.EndsWith("]"))
+                                {
+                                    string trimedColum = line.Trim('[', ']');
+                                    nowColumns = trimedColum;
+                                    colIndex = Form1.MainGrid.Columns.Add(trimedColum, trimedColum);
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                if (nowColumns == null)
+                                {
+                                    colIndex = Form1.MainGrid.Columns.Add("", "");
+                                }
+                            }
+                            int rowIndex = Form1.MainGrid.Rows.Add();
+                            Form1.MainGrid.Rows[rowIndex].Cells[colIndex].Value = line;
+
                         }
                     }
                     sr.Close();
-
                 }
                 else
                 {

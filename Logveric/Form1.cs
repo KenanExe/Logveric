@@ -16,7 +16,10 @@ namespace Logveric
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            dataGridView1.Columns.Add("Ad", "Ad");
+            //dataGridView1.Columns.Add("Ad", "Ad");
+            int colIndex = Form1.MainGrid.Columns.Add("sa", "sa");
+            int rowIndex = Form1.MainGrid.Rows.Add();
+            Form1.MainGrid.Rows[rowIndex].Cells[colIndex].Value = "0-0";
         }
         public void lbl_LogSize_Text(int LogValue)
         {
