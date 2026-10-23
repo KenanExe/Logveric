@@ -37,6 +37,7 @@ namespace Logveric
                     Form1.MainGrid.Columns.Clear();
                     string nowColumns = null;
                     int colIndex = 0;
+                    int rowIndex = 0;
                     StreamReader sr = new StreamReader(filePath);
                     while (true)
                     {
@@ -47,25 +48,36 @@ namespace Logveric
                         }
                         if (!string.IsNullOrEmpty(line))
                         {
-                            if (line.StartsWith("["))
+                            if (line.StartsWith("[") && line.EndsWith("]"))
                             {
-                                if (line.EndsWith("]"))
-                                {
                                     string trimedColum = line.Trim('[', ']');
                                     nowColumns = trimedColum;
                                     colIndex = Form1.MainGrid.Columns.Add(trimedColum, trimedColum);
+                                    rowIndex = 0;
                                     continue;
-                                }
+                                
+                            }
+                            else if (line.StartsWith("(") && line.EndsWith(")")){
+                                string trimedColum = line.Trim('(', ')');
+                                nowColumns = trimedColum;
+                                colIndex = Form1.MainGrid.Columns.Add(trimedColum, trimedColum);
+                                rowIndex = 0;
+                                continue;
                             }
                             else
                             {
                                 if (nowColumns == null)
                                 {
                                     colIndex = Form1.MainGrid.Columns.Add("", "");
+                                    nowColumns = "";
                                 }
                             }
-                            int rowIndex = Form1.MainGrid.Rows.Add();
+                            if (rowIndex >= Form1.MainGrid.Rows.Count)
+                            {
+                                Form1.MainGrid.Rows.Add();
+                            }
                             Form1.MainGrid.Rows[rowIndex].Cells[colIndex].Value = line;
+                            rowIndex++;
 
                         }
                     }
