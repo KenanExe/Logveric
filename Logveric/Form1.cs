@@ -19,7 +19,7 @@ namespace Logveric
             //dataGridView1.Columns.Add("Ad", "Ad");
             int colIndex = Form1.MainGrid.Columns.Add("sa", "sa");
             int rowIndex = Form1.MainGrid.Rows.Add();
-            Form1.MainGrid.Rows[rowIndex].Cells[colIndex].Value = "0-0";
+            Form1.MainGrid.Rows[rowIndex].Cells[colIndex].Value = "0/0";
         }
         public void lbl_LogSize_Text(int LogValue)
         {
@@ -29,6 +29,12 @@ namespace Logveric
         private void button1_Click(object sender, EventArgs e)
         {
             FileReader.OpenFile();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            lbl_LogSize.Text = $"Showing {e.RowIndex + 1 }/{dataGridView1.Rows.Count}";
         }
     }
 }
