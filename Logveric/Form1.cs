@@ -35,6 +35,7 @@ namespace Logveric
         {
 
             lbl_LogSize.Text = $"Showing {e.RowIndex + 1 }/{dataGridView1.Rows.Count}";
+            lbl_LogSize.Text = $"{FileReader.fileRealSize / 1024.0 / 1024.0:F2} MB";
         }
     }
 }

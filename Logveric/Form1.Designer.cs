@@ -34,6 +34,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             lbl_LogSize = new Label();
             button1 = new Button();
+            lblFileSize = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -78,6 +79,7 @@
             flowLayoutPanel1.Controls.Add(btn_Left);
             flowLayoutPanel1.Controls.Add(btn_Right);
             flowLayoutPanel1.Controls.Add(button1);
+            flowLayoutPanel1.Controls.Add(lblFileSize);
             flowLayoutPanel1.Dock = DockStyle.Bottom;
             flowLayoutPanel1.Location = new Point(0, 900);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -107,6 +109,18 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // lblFileSize
+            // 
+            lblFileSize.AutoSize = true;
+            lblFileSize.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            lblFileSize.Location = new Point(283, 9);
+            lblFileSize.Margin = new Padding(3, 9, 3, 3);
+            lblFileSize.Name = "lblFileSize";
+            lblFileSize.Size = new Size(73, 20);
+            lblFileSize.TabIndex = 5;
+            lblFileSize.Text = "Size: 0mb";
+            lblFileSize.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -132,5 +146,6 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Label lbl_LogSize;
         private Button button1;
+        private Label lblFileSize;
     }
 }
