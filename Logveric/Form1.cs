@@ -21,21 +21,28 @@ namespace Logveric
             int rowIndex = Form1.MainGrid.Rows.Add();
             Form1.MainGrid.Rows[rowIndex].Cells[colIndex].Value = "0/0";
         }
-        public void lbl_LogSize_Text(int LogValue)
-        {
-            lbl_LogSize.Text = $"Showing {LogValue}";
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FileReader.OpenFile();
+            dataGridView1_CellClick(sender, new DataGridViewCellEventArgs(0, 0));
         }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
             lbl_LogSize.Text = $"Showing {e.RowIndex + 1 }/{dataGridView1.Rows.Count}";
-            lbl_LogSize.Text = $"{FileReader.fileRealSize / 1024.0 / 1024.0:F2} MB";
+            long fileSize = FileReader.fileRealSize;
+            if (fileSize >= 1024 * 1024) 
+            {
+                lblFileSize.Text = $"{FileReader.fileRealSize / (1024.0 * 1024.0):F2} MB";
+            }
+            else if (fileSize >= 1024) 
+            {
+                lblFileSize.Text = $"{FileReader.fileRealSize / 1024.0:F2} KB";
+            }
+            else 
+            {
+                lblFileSize.Text = $"{FileReader.fileRealSize} Bytes";
+            }
         }
     }
 }
